@@ -3,7 +3,7 @@ class Home extends CI_Controller
 {
     function __construct()
     {
-     parent::__construct();
+        parent::__construct();
     }
     public function index()
     {
@@ -55,5 +55,8 @@ class Home extends CI_Controller
         $this->load->view('templates/templates-user/header', $data);
         $this->load->view('buku/detail-buku', $data);
         $this->load->view('templates/templates-user/footer');
+        $this->load->view('templates/templates-user/modal');
+        $this->load->view('templates/templates-user/modal');
+
  }}
 
