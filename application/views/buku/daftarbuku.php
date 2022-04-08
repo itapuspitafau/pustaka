@@ -1,5 +1,10 @@
-<?= $this->session->flashdata('pesan'); ?>
-<div style="padding: 25px;">
+<?php if(validation_errors()){?>
+    <div class="alert alert-danger" role="alert">
+        <?= validation_errors();?>
+    </div>
+    <?php }?>
+    <?= $this->session->flashdata('pesan'); ?>
+    <div style="padding: 25px;">
     <div class="x_panel">
         <div class="x_content">
             <!-- Tampilkan semua produk -->

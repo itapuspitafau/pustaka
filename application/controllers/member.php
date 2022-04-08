@@ -61,6 +61,20 @@ public function daftar()
         ]);
         $this->form_validation->set_rules('password2', 'Repeat Password', 
         'required|trim|matches[password1]');
+        
+        if ($this->form_validation->run() == false) {
+            $data = [
+                'user' =>"Pengunjung",
+                'judul' => "Katalog Buku",
+                'buku' => $this->ModelBuku->getBuku()->result(),
+            ];
+            $this->load->view('templates/templates-user/header', $data);
+            $this->load->view('buku/daftarbuku', $data);
+            $this->load->view('templates/templates-user/modal');
+            $this->load->view('templates/templates-user/footer', $data);
+        } else {
+
+           
         $email = $this->input->post('email', true);
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama', true)),
@@ -77,7 +91,7 @@ public function daftar()
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message"role="alert">Selamat!! akun anggota anda sudah dibuat.</div>');
         redirect(base_url());
     }
-
+}
     public function myProfil()
     {
         $data['judul'] = 'Profil Saya';
@@ -152,5 +166,6 @@ public function daftar()
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message"role="alert">Anda telah logout!!</div>');
         redirect('home');
+    
     }
 }
